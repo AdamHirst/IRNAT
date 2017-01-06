@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "I really need a ticket",
-  "description": "Extention allows the express checkout of Eventbrite tickets by chosing the first available option and proceeding to the purchase page.",
+  "description": "Extention allows the express checkout of Eventbrite tickets by selecting the first available option and proceeding to the purchase page.",
   "version": "1.0",
 
   "browser_action": {
