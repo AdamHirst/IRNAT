@@ -8,9 +8,30 @@
  * @param {function()=} callback - called once the runner has been
  *   started.
  */
-function startBackgroudRunner() {
-  chrome.storage.sync.set({'run': true});
-  chrome.tabs.reload();
+function toggleBackgroudRunner() {
+  var el = document.getElementById("irnat_button");
+  chrome.storage.sync.get(null, function (data) {
+    if (data.run) {
+      // Disable
+      // Unset the run flag in storage
+      chrome.storage.sync.remove('run');
+
+      // Change the button style
+      el.innerHTML = "I really need a ticket.";
+      el.className = "btn";
+    } else {
+      // Enable
+      // Tell the background runner to run
+      chrome.storage.sync.set({'run': true});
+
+      // Reload the tab
+      chrome.tabs.reload();
+
+      // Change the button style
+      el.innerHTML = "Stop";
+      el.className += " btn-red";
+    }
+  });
 }
 
 /*
@@ -29,15 +50,12 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Stop the background runner if its already running
-  chrome.storage.sync.remove('run');
-
   // Run only on an Eventbrite page
   runOnEventbriteEventPage(function(url) {
     // Change the display
     document.getElementById("non-eventbrite").style.display = "none";
     document.getElementById("eventbrite").style.display = "block";
-    document.getElementById("irnat_button").addEventListener("click", startBackgroudRunner);
+    document.getElementById("irnat_button").addEventListener("click", toggleBackgroudRunner);
 
     // Get the event details
     chrome.tabs.executeScript(null, {
