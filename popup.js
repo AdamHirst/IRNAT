@@ -31,10 +31,10 @@ function toggleBackgroudRunner() {
         if (chrome.runtime.lastError) {
           // An error has occurred.
         }
-      });
 
-      // Reload the tab
-      chrome.tabs.reload();
+        // Reload the tab
+        chrome.tabs.reload();
+      });
 
       // Change the button style
       el.innerHTML = "Stop";
