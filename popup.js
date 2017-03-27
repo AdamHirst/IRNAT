@@ -24,6 +24,9 @@ function toggleBackgroudRunner() {
       // Tell the background runner to run
       chrome.storage.sync.set({'run': true});
 
+      // The runner needs to have the ticket window open. Ensure it is.
+      window.location.hash = "#tickets"
+
       // Reload the tab
       chrome.tabs.reload();
 
