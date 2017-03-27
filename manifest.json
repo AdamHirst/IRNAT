@@ -5,10 +5,10 @@
   "description": "Extention allows the express checkout of Eventbrite tickets by selecting the first available option and proceeding to the purchase page.",
   "version": "1.0",
   "background": {
-    "page": "background.html"
+    "scripts": ["util.js", "background.js"]
   },
   "browser_action": {
-    "default_icon": "icon_bw.png",
+    "default_icon": "/images/icon/38/icon_bw.png",
     "default_popup": "popup.html"
   },
   "permissions": [
