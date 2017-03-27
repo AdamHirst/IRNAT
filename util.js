@@ -1,12 +1,13 @@
-// util.js - Common utilities
+// util.js - Common application utilities
 
 /**
- * Get the current URL.
+ * Get the active tab as a Tab object.
+ * See https://developer.chrome.com/extensions/tabs#type-Tab
  *
- * @param {function(string)} callback - called when the URL of the current tab
- *   is found.
+ * @param {function(Tab)} callback - called when the active tab object is
+ *   retrieved.
  */
-function getCurrentTabUrl(callback) {
+function getActiveTab(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
   var queryInfo = {
@@ -15,24 +16,50 @@ function getCurrentTabUrl(callback) {
   };
 
   chrome.tabs.query(queryInfo, function(tabs) {
-    if (tabs.length > 0) {
-      // Get the current tab
-      var tab = tabs[0];
+    // Get the active tab. Due to the queryInfo, we can safely assume that tabs
+    // is a non-null array of tabs with at least one window active.
+    var tab = tabs[0];
 
-      // A tab is a plain object that provides information about the tab.
-      // See https://developer.chrome.com/extensions/tabs#type-Tab
-      var url = tab.url;
+    callback(tab);
+  }
+}
 
-      // tab.url is only available if the "activeTab" permission is declared.
-      // If you want to see the URL of other tabs (e.g. after removing active:true
-      // from |queryInfo|), then the "tabs" permission is required to see their
-      // "url" properties.
-      console.assert(typeof url == 'string', 'tab.url should be a string');
+/**
+ * Get the current URL.
+ *
+ * @param {function(string)} callback - called when the URL of the current tab
+ *   is found.
+ */
+function getCurrentTabUrl(callback) {
+  // Get the active tab
+  getActiveTab(function(tab) {
+    // Get the URL of the active tab
+    var url = tab.url;
 
-      callback(url);
-    } else {
-      callback(null);
-    }
+    // tab.url is only available if the "activeTab" permission is declared.
+    // If you want to see the URL of other tabs (e.g. after removing active:true
+    // from |queryInfo|), then the "tabs" permission is required to see their
+    // "url" properties.
+    console.assert(typeof url == 'string', 'tab.url should be a string');
+
+    callback(url);
+  });
+}
+
+/**
+ * Reloads the current tab
+ *
+ * @param {function()=} callback - called once refresh has been fired on the
+ *   active tab.
+ */
+function reloadTab(callback) {
+  // Get the active tab
+  getActiveTab(function(tab) {
+    // Get the id of the active tab
+    var id = tab.id;
+
+    // Reload the page
+    chrome.tabs.reload(id, null, callback);
   });
 }
 
