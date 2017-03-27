@@ -17,7 +17,6 @@ function startBackgroudRunner(callback) {
  */
 chrome.runtime.onMessage.addListener(function(request, sender) {
   // Check the action of the message
-  console.log("Message!");
   if (request.action == "getEventDetail") {
     // Set the title
     document.getElementsByClassName("card-title")[0].innerHTML
@@ -31,7 +30,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 document.addEventListener('DOMContentLoaded', function() {
   // Run only on an Eventbrite page
   isEventbriteEventPage(function(url) {
-    console.log("This is eventbrite");
     // Get the event details
     chrome.tabs.executeScript(null, {
       file: 'getEventDetail.js'
