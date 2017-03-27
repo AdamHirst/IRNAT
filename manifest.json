@@ -4,7 +4,9 @@
   "name": "I really need a ticket",
   "description": "Extention allows the express checkout of Eventbrite tickets by selecting the first available option and proceeding to the purchase page.",
   "version": "1.0",
-
+  "background": {
+    "page": "background.html"
+  },
   "browser_action": {
     "default_icon": "icon_bw.png",
     "default_popup": "popup.html"
