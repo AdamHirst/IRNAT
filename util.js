@@ -54,8 +54,8 @@ function getCurrentTabUrl(callback) {
 function isEventbriteEventPage(callback) {
   // Get the URL of the current tab.
   getCurrentTabUrl(function(url) {
-    // The pattern of the search.
-    var pattern = "^(https?:\/\/(.+?\.)?eventbrite\.com\/e\/)";
+    // The pattern of the search. TODO: expand TLD support
+    var pattern = "^(https?:\/\/(.+?\.)?eventbrite\.(com|co\.uk)\/e\/)";
 
     // Test the pattern against the url.
     callback(new RegExp(pattern).test(url));
