@@ -25,7 +25,13 @@ function toggleBackgroudRunner() {
       chrome.storage.sync.set({'run': true});
 
       // The runner needs to have the ticket window open. Ensure it is.
-      window.location.hash = "#tickets"
+      chrome.tabs.executeScript(null, {
+        file: 'openTicketWindow.js'
+      }, function() {
+        if (chrome.runtime.lastError) {
+          // An error has occurred.
+        }
+      });
 
       // Reload the tab
       chrome.tabs.reload();
@@ -55,6 +61,15 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 document.addEventListener('DOMContentLoaded', function() {
   // Run only on an Eventbrite page
   runOnEventbriteEventPage(function(url) {
+    // Check if the background runner is running
+    chrome.storage.sync.get(null, function (data) {
+      if (data.run) {
+        // Update the button style
+        el.innerHTML = "Stop";
+        el.className += " btn-red";
+      }
+    })
+
     // Change the display
     document.getElementById("non-eventbrite").style.display = "none";
     document.getElementById("eventbrite").style.display = "block";
