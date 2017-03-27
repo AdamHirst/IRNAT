@@ -21,7 +21,7 @@ function getActiveTab(callback) {
     var tab = tabs[0];
 
     callback(tab);
-  }
+  });
 }
 
 /**
@@ -47,23 +47,6 @@ function getCurrentTabUrl(callback) {
 }
 
 /**
- * Reloads the current tab
- *
- * @param {function()=} callback - called once refresh has been fired on the
- *   active tab.
- */
-function reloadTab(callback) {
-  // Get the active tab
-  getActiveTab(function(tab) {
-    // Get the id of the active tab
-    var id = tab.id;
-
-    // Reload the page
-    chrome.tabs.reload(id, null, callback);
-  });
-}
-
-/**
  * Determine if the page is an Eventbrite event page
  *
  * @param {function(boolean)} callback - called after the URL is tested.
@@ -72,7 +55,7 @@ function isEventbriteEventPage(callback) {
   // Get the URL of the current tab.
   getCurrentTabUrl(function(url) {
     // The pattern of the search.
-    var pattern = "^(https?:\/\/(.+?\.)?eventbrite\.com\/e\/";
+    var pattern = "^(https?:\/\/(.+?\.)?eventbrite\.com\/e\/)";
 
     // Test the pattern against the url.
     callback(new RegExp(pattern).test(url));

@@ -20,10 +20,11 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   console.log("Message!");
   if (request.action == "getEventDetail") {
     // Set the title
-    $('div.card-title').innerHTML = request.eventDetail.title;
+    document.getElementsByClassName("card-title")[0].innerHTML
+      = request.eventDetail.title;
     // Set the image
-    $('div.header-bg').css('background-image', "url('" +
-      request.eventDetail.image + "')");
+    document.getElementsByClassName("header-bg")[0].style.backgroundImage
+      = "url('" + request.eventDetail.image + "')";
   }
 })
 
