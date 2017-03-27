@@ -25,11 +25,15 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     document.getElementsByClassName("header-bg")[0].style.backgroundImage
       = "url('" + request.eventDetail.image + "')";
   }
-})
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   // Run only on an Eventbrite page
-  isEventbriteEventPage(function(url) {
+  runOnEventbriteEventPage(function(url) {
+    // Change the display
+    document.getElementById("non-eventbrite").style.display = "none";
+    document.getElementById("eventbrite").style.display = "block";
+
     // Get the event details
     chrome.tabs.executeScript(null, {
       file: 'getEventDetail.js'

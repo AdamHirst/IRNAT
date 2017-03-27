@@ -26,7 +26,6 @@
       }
 
       .header-bg {
-        background: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27836618%2F134557274447%2F1%2Foriginal.jpg?w=800&rect=0%2C71%2C2494%2C1247&s=6a1fae7e018fdebbdff5823682fa09c9');
         background-size: cover;
         opacity: 0.8;
         top: 0;
@@ -65,6 +64,25 @@
         margin-bottom: 10px;
         font-size: 20px;
       }
+
+      #eventbrite {
+        display: none;
+      }
+      .ne-header {
+      }
+      .ne-header-inner {
+        padding: 20px;
+      }
+      .ne-header-title {
+        background-color: #f6682F;
+        text-align: center;
+        max-width: 360px;
+        padding: 20px;
+        color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 20px;
+      }
     </style>
 
     <!--
@@ -78,11 +96,21 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <div class="header-bg"></div>
-        <div class="card">
-          <div class="card-title">CopenHacks 2017</div>
-          <div class="btn">I really need a ticket.</div>
+      <div id="non-eventbrite">
+        <div class="ne-header">
+          <div class="ne-header-title">I really need a ticket.</div>
+          <div class="ne-header-inner">
+            You must be on an Eventbrite event page in order to use this plugin.
+          </div>
+        </div>
+      </div>
+      <div id="eventbrite">
+        <div class="header">
+          <div class="header-bg"></div>
+          <div class="card">
+            <div class="card-title">CopenHacks 2017</div>
+            <a href="#"><div class="btn">I really need a ticket.</div></a>
+          </div>
         </div>
       </div>
       <div class="footer">Created by <a href="https://ahirst.com">Adam Hirst</a></div>

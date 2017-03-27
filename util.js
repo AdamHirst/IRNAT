@@ -61,3 +61,15 @@ function isEventbriteEventPage(callback) {
     callback(new RegExp(pattern).test(url));
   })
 }
+
+/**
+ * Run the callback only if the page is an eventbrite page
+ *
+ * @param {function()} callback - called if and only if the active tab is an
+ *   eventbrite event page.
+ */
+function runOnEventbriteEventPage(callback) {
+  isEventbriteEventPage(function(e) {
+    if (e) callback();
+  })
+}
