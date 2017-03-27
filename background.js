@@ -7,7 +7,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   // Check the action of the message
   if (request.action == "registerAttempt") {
     // Reload and try again if unsuccessful
-    console.log("Registration was unsuccessful");
     if (!request.success) chrome.tabs.reload();
   }
 });
@@ -25,8 +24,6 @@ function update() {
 
       // Check if the runner is already active
       chrome.storage.sync.get(null, function(response) {
-        console.log(response);
-
         if (response.run) {
           // Set the icon
           chrome.browserAction.setIcon({
@@ -37,8 +34,6 @@ function update() {
                   });
 
           // Try to secure the ticket
-          console.log("Attempting ticket registration");
-
           chrome.tabs.executeScript(null, {
             file: 'secureTicket.js'
           }, function() {
@@ -59,8 +54,6 @@ function update() {
               });
     }
   });
-
-  console.log("update");
 }
 
 chrome.tabs.onActivated.addListener(update);
