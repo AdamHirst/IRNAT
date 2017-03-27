@@ -8,8 +8,9 @@
  * @param {function()=} callback - called once the runner has been
  *   started.
  */
-function startBackgroudRunner(callback) {
-  chrome.storage.sync.set({'run': true}, callback);
+function startBackgroudRunner() {
+  chrome.storage.sync.set({'run': true});
+  chrome.tabs.reload();
 }
 
 /*
@@ -28,11 +29,15 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Stop the background runner if its already running
+  chrome.storage.sync.remove('run');
+
   // Run only on an Eventbrite page
   runOnEventbriteEventPage(function(url) {
     // Change the display
     document.getElementById("non-eventbrite").style.display = "none";
     document.getElementById("eventbrite").style.display = "block";
+    document.getElementById("irnat_button").addEventListener("click", startBackgroudRunner);
 
     // Get the event details
     chrome.tabs.executeScript(null, {
