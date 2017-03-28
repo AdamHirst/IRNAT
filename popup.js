@@ -60,27 +60,24 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
  * Add a listener for page loading.
  */
 document.addEventListener('DOMContentLoaded', function() {
-  // Run only on an Eventbrite page
-  runOnEventbriteEventPage(function(url) {
-    // Check if the background runner is running
-    chrome.storage.sync.get(null, function (data) {
-      if (data.run) {
-        // Update the button style
-        el.innerHTML = "Stop";
-        el.className += " btn-red";
-      }
-    })
+  // Check if the background runner is running
+  chrome.storage.sync.get(null, function (data) {
+    if (data.run) {
+      // Update the button style
+      el.innerHTML = "Stop";
+      el.className += " btn-red";
+    }
+  });
 
-    // Add the event listener to the button.
-    document.getElementById("irnat_button").addEventListener("click", toggleBackgroudRunner);
+  // Add the event listener to the button.
+  document.getElementById("irnat_button").addEventListener("click", toggleBackgroudRunner);
 
-    // Get the event details
-    chrome.tabs.executeScript(null, {
-      file: 'getEventDetail.js'
-    }, function() {
-      if (chrome.runtime.lastError) {
-        // An error has occurred.
-      }
-    });
+  // Get the event details
+  chrome.tabs.executeScript(null, {
+    file: 'getEventDetail.js'
+  }, function() {
+    if (chrome.runtime.lastError) {
+      // An error has occurred.
+    }
   });
 });

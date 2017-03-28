@@ -33,10 +33,28 @@ function setIcon(iconName) {
 }
 
 /**
+ *
+ *
+ * @param {boolean} isEventbrite - is the page an eventbrite page
+ */
+function setPopup(isEventbrite, callback) {
+  if (isEventbrite) {
+    // Set the popup to the Eventbrite popup
+    chrome.browserAction.setPopup({ popup: 'eventbrite_popup.html' });
+  } else {
+    // Set the popup to the default popup
+    chrome.browserAction.setPopup({ popup: 'default_popup.html' });
+  }
+}
+
+/**
  * Updates the state of the plugin.
  */
 function update() {
   isEventbriteEventPage(function(e) {
+    // Set the popup depending on whether this is an Eventbrite event page.
+    setPopup(e);
+
     if (e) {
       // Set the icon to inform the user the plugin may be used.
       setIcon("icon");
