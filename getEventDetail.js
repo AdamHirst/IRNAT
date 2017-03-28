@@ -1,3 +1,6 @@
+// getEventDetail.js - Scrapes the details of an event from an Eventbrite event
+//                     page.
+
 /**
  * Returns details about the event
  */

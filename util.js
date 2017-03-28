@@ -59,7 +59,7 @@ function isEventbriteEventPage(callback) {
 
     // Test the pattern against the url.
     callback(new RegExp(pattern).test(url));
-  })
+  });
 }
 
 /**
@@ -71,5 +71,5 @@ function isEventbriteEventPage(callback) {
 function runOnEventbriteEventPage(callback) {
   isEventbriteEventPage(function(e) {
     if (e) callback();
-  })
+  });
 }
