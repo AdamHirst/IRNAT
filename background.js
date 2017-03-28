@@ -11,27 +11,38 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   }
 });
 
+/**
+ * Sets the icon of the extension.
+ *
+ * @param {string} iconName - the name of the icon to set. Can be icon, icon_bw
+ *   or icon_active.
+ */
+function setIcon(iconName) {
+  // If iconName is not set, set it to the default black and white icon.
+  if (typeof iconName === 'undefined') { iconName = "icon_bw"; }
+
+  // Set the icon
+  chrome.browserAction.setIcon({
+    path: {
+      "16": "/images/icon/16/" + iconName + ".png",
+      "19": "/images/icon/19/" + iconName + ".png",
+      "32": "/images/icon/32/" + iconName + ".png",
+      "38": "/images/icon/38/" + iconName + ".png"
+    }
+  });
+}
+
 function update() {
   isEventbriteEventPage(function(e) {
     if (e) {
       // Set the icon to inform the user the plugin may be used.
-      chrome.browserAction.setIcon({
-        path: { "16": "/images/icon/16/icon.png",
-                "19": "/images/icon/19/icon.png",
-                "32": "/images/icon/32/icon.png",
-                "38": "/images/icon/38/icon.png" }
-              });
+      setIcon("icon");
 
       // Check if the runner is already active
       chrome.storage.sync.get(null, function(response) {
         if (response.run) {
           // Set the icon
-          chrome.browserAction.setIcon({
-            path: { "16": "/images/icon/16/icon_active.png",
-                    "19": "/images/icon/19/icon_active.png",
-                    "32": "/images/icon/32/icon_active.png",
-                    "38": "/images/icon/38/icon_active.png" }
-                  });
+          setIcon("icon_active");
 
           // Try to secure the ticket
           chrome.tabs.executeScript(null, {
@@ -46,12 +57,7 @@ function update() {
         }
       })
     } else {
-      chrome.browserAction.setIcon({
-        path: { "16": "/images/icon/16/icon_bw.png",
-                "19": "/images/icon/19/icon_bw.png",
-                "32": "/images/icon/32/icon_bw.png",
-                "38": "/images/icon/38/icon_bw.png" }
-              });
+      setIcon("icon_bw");
     }
   });
 }
