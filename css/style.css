@@ -1,0 +1,85 @@
+/* TODO: Restructure/add commentary */
+
+body {
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: #eee;
+}
+.container {
+  margin: 0;
+  padding: 0;
+  width: 400px;
+}
+.header {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-bg {
+  background-size: cover;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 5px;
+}
+.footer {
+  background-color: #282C35;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #939599;
+  padding: 10px;
+  text-align: center;
+}
+.btn {
+  background-color: #f6682F;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  text-align:center;
+  max-width: 200px;
+}
+.btn-red {
+  background-color: #ff000d;
+}
+
+.card {
+  background-color: #fff;
+  width: 200px;
+  padding: 20px;
+  text-align:center;
+  border-radius: 3px;
+}
+.card-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+#eventbrite {
+  display: none;
+}
+.ne-header {
+}
+.ne-header-inner {
+  padding: 20px;
+}
+.ne-header-title {
+  background-color: #f6682F;
+  text-align: center;
+  max-width: 360px;
+  padding: 20px;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 20px;
+}
