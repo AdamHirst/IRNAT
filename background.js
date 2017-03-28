@@ -32,6 +32,9 @@ function setIcon(iconName) {
   });
 }
 
+/**
+ * Updates the state of the plugin.
+ */
 function update() {
   isEventbriteEventPage(function(e) {
     if (e) {

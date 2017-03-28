@@ -56,6 +56,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   }
 });
 
+/*
+ * Add a listener for page loading.
+ */
 document.addEventListener('DOMContentLoaded', function() {
   // Run only on an Eventbrite page
   runOnEventbriteEventPage(function(url) {
