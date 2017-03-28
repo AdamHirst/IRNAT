@@ -71,9 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })
 
-    // Change the display
-    document.getElementById("non-eventbrite").style.display = "none";
-    document.getElementById("eventbrite").style.display = "block";
+    // Add the event listener to the button.
     document.getElementById("irnat_button").addEventListener("click", toggleBackgroudRunner);
 
     // Get the event details
