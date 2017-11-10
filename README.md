@@ -1,6 +1,6 @@
 <div align="center"><h1>I really need a ticket.</h1></div>
 <div align="center">Chrome extension to secure an Eventbrite ticket to popular events.</div>
-<br><br>
+<br>
 <div align="center"><img src="https://raw.githubusercontent.com/AdamHirst/IRNAT/master/Screenshots/example.png" /></div>
 <br>
 
