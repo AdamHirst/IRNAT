@@ -1,5 +1,6 @@
-# I really need a ticket.
-Chrome extension to secure an Eventbrite ticket to popular events.
+<div align="center"><h1>I really need a ticket.</h1></div>
+<div align="center">Chrome extension to secure an Eventbrite ticket to popular events.</div>
+<div style="center"><img src="https://raw.githubusercontent.com/AdamHirst/IRNAT/master/Screenshots/example.png" /></div>
 
 NOTE: This extension does not guarentee a ticket, instead it attempts to increase the likelyhood of securing a ticket by sending multiple registration requests faster than manually refreshing the page.
 
